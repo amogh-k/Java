@@ -17,32 +17,26 @@ public class Frog {
 	}
 	public void setup(){
 		x = 400;
-
+		y = 490;
 		
 	}
 	public void draw() {
-		if (lane == 0){
-			y = 490;
-		}
-		else {
-			y = 230 + 50*lane;
-		}
 		Zen.setColor("red");
 		Zen.fillOval(x-15, y-15, 20, 20);
 	}
 	public void move(){
 		if (Zen.isKeyPressed("up") && upKeyPressed == false){
-			lane -= 1; 
+			y -= 50; 
 			upKeyPressed = true;
 		}
 		if (Zen.isKeyPressed("right")){
-			lane += 1; 
+			x += 50; 
 		}
 		if (Zen.isKeyPressed("left")){
-			lane += 1; 
+			x -= 50; 
 		}
-		if (Zen.isKeyPressed("down")){
-			lane += 1; 
+		if (Zen.isKeyPressed("down") && y <=740){
+			y += 50; 
 		}
 		if (Zen.isKeyPressed("up") == false){
 			upKeyPressed = false;
