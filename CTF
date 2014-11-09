@@ -1,0 +1,72 @@
+package CTF;
+
+import zen.core.Zen;
+
+public class CaptureTheFlag {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		Zen.connect("capture the flag");
+		Zen.write("amoghx", 750);
+		Zen.write("amoghy", 250 );
+		Zen.write("amoghteam", "blue" );
+		
+		int speed = 10;
+		
+		Zen.create(1000,500);
+		Game g = new Game();
+		Player me = new Player("amogh");
+		Team redTeam = new Team("red");
+		redTeam.addPlayer(new Player("keshav"));
+		redTeam.addPlayer(new Player("divya"));
+		redTeam.addPlayer(new Player("ruchi"));
+		redTeam.addPlayer(new Player("alejandro"));
+		redTeam.addPlayer(new Player("nathan"));
+		redTeam.addPlayer(new Player("akash"));
+		g.addTeam(redTeam);
+		
+		Team blueTeam = new Team("blue");
+		blueTeam.addPlayer(new Player("nicolas"));
+		blueTeam.addPlayer(me);
+		blueTeam.addPlayer(new Player("anoop"));
+		blueTeam.addPlayer(new Player("rishi"));
+		blueTeam.addPlayer(new Player("rohan"));
+		g.addTeam(blueTeam);
+		while(true){
+			
+			if (Zen.isKeyPressed("left")){
+				Zen.write("amoghx", getX()-speed);
+			}
+			if (Zen.isKeyPressed("right")){
+				Zen.write("amoghx", getX()+speed);
+			}
+			if (Zen.isKeyPressed("down")){
+				Zen.write("amoghy", getY()+speed);
+			}
+			if (Zen.isKeyPressed("up")){
+				Zen.write("amoghy", getY()-speed);
+			}
+			Zen.setBackground("navajo white");
+			Zen.setColor("green");
+			Zen.drawLine(500,0,500,500);
+			if(getX()<500 && blueTeam.isTouching(me)){
+				Zen.write("amoghx", 750);
+				Zen.write("amoghx", 250);
+			}
+			
+			
+			g.draw();
+			g.move();
+			Zen.buffer(33);
+		}
+	}
+	private static int getX(){
+		return Zen.readInt("amoghx");
+	}
+	private static int getY(){
+		return Zen.readInt("amoghy");
+	}
+
+}
