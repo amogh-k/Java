@@ -1,0 +1,39 @@
+package CTF;
+
+import java.util.ArrayList;
+
+public class Team {
+	ArrayList <Player> players;
+	Flag myFlag;
+	public Team(String color){
+		players = new ArrayList <Player>();
+		myFlag = new Flag(color);
+	}
+	
+	public void addPlayer(Player p){
+		players.add(p);
+	}
+	
+	public void draw(){
+		for(Player p: players){
+			p.draw();
+		}
+		myFlag.draw();
+	}
+	public void move(){
+		for(Player p: players){
+			p.move();
+		}
+		myFlag.move();
+	}
+
+	public boolean isTouching(Player target) {
+		for(Player p: players)
+			if ((p.team).equals("red") && 
+					Math.abs(p.x-10-(target.x-10))<20 &&
+					Math.abs(p.y-10-(target.y-10))<20){
+				return true;
+			}
+		return false;
+	}
+}
